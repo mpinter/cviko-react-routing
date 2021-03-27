@@ -23,10 +23,22 @@ const App: React.FC = () => {
     return (
         <div className={lightBgMode ? 'App light' : 'App'}>
             <div>
-                <button type="button" onClick={() => setRoute('Home')}>
+                <button
+                    type="button"
+                    onClick={() => {
+                        window.history.pushState('home', 'Home', '/');
+                        setRoute('Home');
+                    }}
+                >
                     Home
                 </button>
-                <button type="button" onClick={() => setRoute('About')}>
+                <button
+                    type="button"
+                    onClick={() => {
+                        window.history.pushState('about', 'About', '/about');
+                        setRoute('About');
+                    }}
+                >
                     About
                 </button>
             </div>
