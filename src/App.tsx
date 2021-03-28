@@ -6,6 +6,7 @@ import Home from './components/Home';
 import About from './components/About';
 import GettingData from './components/GettingData';
 import GettingDataBetter from './components/GettingDataBetter';
+import Gql from './components/Gql';
 
 const App: React.FC = () => {
     const [lightBgMode, setLightBgMode] = useState(false);
@@ -29,6 +30,9 @@ const App: React.FC = () => {
                     </Route>
                     <Route path="/better-data">
                         <GettingDataBetter />
+                    </Route>
+                    <Route path="/gql">
+                        <Gql />
                     </Route>
                     <Route path="/">
                         <Home />

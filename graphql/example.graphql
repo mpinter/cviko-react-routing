@@ -1,0 +1,6 @@
+query LandpadsWikis {
+    landpads(limit: 10) {
+        full_name
+        wikipedia
+    }
+}
