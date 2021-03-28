@@ -1,55 +1,45 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 import Home from './components/Home';
 import About from './components/About';
+import GettingData from './components/GettingData';
+import GettingDataBetter from './components/GettingDataBetter';
 
 const App: React.FC = () => {
-    // naive approach 2 - just state, no url
-    const [route, setRoute] = useState<'Home' | 'About'>('Home');
-    let whatToRender: string | React.ReactNode;
-    switch (route) {
-        case 'Home':
-            whatToRender = <Home />;
-            break;
-        case 'About':
-            whatToRender = <About />;
-            break;
-        default:
-            whatToRender = '404 - not found';
-    }
     const [lightBgMode, setLightBgMode] = useState(false);
-
     return (
-        <div className={lightBgMode ? 'App light' : 'App'}>
-            <div>
-                <button
-                    type="button"
-                    onClick={() => {
-                        window.history.pushState('home', 'Home', '/');
-                        setRoute('Home');
-                    }}
-                >
-                    Home
-                </button>
-                <button
-                    type="button"
-                    onClick={() => {
-                        window.history.pushState('about', 'About', '/about');
-                        setRoute('About');
-                    }}
-                >
-                    About
-                </button>
+        <Router>
+            <div className={lightBgMode ? 'App light' : 'App'}>
+                <div className="header">
+                    <Link to="/">Home</Link>
+                    <Link to="/about">About</Link>
+                    <Link to="/data">Getting Data</Link>
+                    <Link to="/better-data">SWR</Link>
+                </div>
+                <header className="App-header">
+                    <img src={logo} className="App-logo" alt="logo" />
+                    <Switch>
+                        <Route path="/about">
+                            <About />
+                        </Route>
+                        <Route path="/data">
+                            <GettingData />
+                        </Route>
+                        <Route path="/better-data">
+                            <GettingDataBetter />
+                        </Route>
+                        <Route path="/">
+                            <Home />
+                        </Route>
+                    </Switch>
+                    <button type="button" onClick={() => setLightBgMode(!lightBgMode)}>
+                        Toggle Background
+                    </button>
+                </header>
             </div>
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                {whatToRender}
-                <button type="button" onClick={() => setLightBgMode(!lightBgMode)}>
-                    Toggle Background
-                </button>
-            </header>
-        </div>
+        </Router>
     );
 };
 
