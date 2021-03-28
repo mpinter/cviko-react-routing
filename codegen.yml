@@ -1,0 +1,7 @@
+schema: https://api.spacex.land/graphql
+generates:
+    src/graphql.ts:
+        plugins:
+            - typescript
+            - typescript-operations
+            - typescript-react-apollo
