@@ -9,7 +9,7 @@ const GettingData: React.FC = () => {
             setDataError(null);
             setData(null);
             setDataLoading(true);
-            const result = await fetch('https://pokeapi.co/api/v2/pokemon');
+            const result = await fetch('https://api.spacex.land/rest/launches');
             if (result.ok) {
                 const json = await result.json();
                 setData(JSON.stringify(json, null, 2));
